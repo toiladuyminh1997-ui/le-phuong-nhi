@@ -2,7 +2,7 @@
 :root {
   --bg: #03101f; --fg: #e3f1ff; --muted: rgba(214, 233, 255, .58); --line: rgba(170, 215, 255, .24);
   --accent: #9fd8ff; --glass: rgba(8, 26, 48, .5);
-  --ui: "Exo 2", system-ui, sans-serif; --serif: "Cormorant Garamond", Georgia, serif;
+  --ui: "Exo 2", system-ui, sans-serif; --serif: "Noto Serif Display", Georgia, serif;
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
 * { box-sizing: border-box; }

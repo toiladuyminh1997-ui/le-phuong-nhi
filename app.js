@@ -365,7 +365,10 @@ async function cardTexture(it) {
   const g0 = ctx.createLinearGradient(0, 0, W, H);
   g0.addColorStop(0, '#0b2f5c'); g0.addColorStop(1, '#020a18');
   ctx.fillStyle = g0; ctx.fillRect(0, 0, W, H);
-  const src = it.type === 'section' ? it.s.cover && it.s.cover.full : it.p.gallery[0] && it.p.gallery[0].full;
+  // bìa tấm kính: ảnh ngang lớn nhất của dự án (ảnh dọc bị cắt nhiều trên khung ngang)
+  const best = it.type === 'project' && it.p.gallery.length
+    ? it.p.gallery.reduce((a, b) => (b.w * b.h * (b.w >= b.h ? 1 : .35) > a.w * a.h * (a.w >= a.h ? 1 : .35) ? b : a)) : null;
+  const src = it.type === 'section' ? it.s.cover && it.s.cover.full : best && best.full;
   if (src) {
     try {
       const im = await loadImg(src), s = Math.max(W / im.width, H / im.height);
@@ -376,16 +379,18 @@ async function cardTexture(it) {
   if (it.type === 'section') {
     const v = ctx.createLinearGradient(0, 0, 0, H); v.addColorStop(0, 'rgba(2,10,24,.1)'); v.addColorStop(1, 'rgba(2,10,24,.55)');
     ctx.fillStyle = v; ctx.fillRect(0, 0, W, H); ctx.fillStyle = '#fff';
-    ctx.font = '300 34px "Exo 2"'; ctx.letterSpacing = '12px'; ctx.globalAlpha = .85;
-    ctx.fillText(`${it.s.n} · ${it.s.kind}`.toUpperCase(), W / 2, H * .3);
-    ctx.globalAlpha = 1; ctx.letterSpacing = '0px'; ctx.font = 'italic 300 118px "Cormorant Garamond"';
-    wrap(ctx, it.s.name, W * .86).forEach((l, k, a) => ctx.fillText(l, W / 2, H * .56 + (k - (a.length - 1) / 2) * 112));
+    // ảnh bìa phần trong quyển đã có sẵn tên phần -> chỉ ghi dòng nhỏ ở đầu và chân tấm kính
+    ctx.font = '400 30px "Exo 2"'; ctx.letterSpacing = '12px'; ctx.globalAlpha = .9;
+    ctx.fillText(`${it.s.n} · ${it.s.kind}`.toUpperCase(), W / 2, H * .12);
+    ctx.font = 'italic 300 44px "Noto Serif Display"'; ctx.letterSpacing = '1px';
+    ctx.fillText(`${it.s.projects.length} projects  →`, W / 2, H * .88);
+    ctx.globalAlpha = 1;
   } else {
     const v = ctx.createLinearGradient(0, 0, 0, H); v.addColorStop(0, 'rgba(2,10,24,.2)'); v.addColorStop(.55, 'rgba(2,10,24,.45)'); v.addColorStop(1, 'rgba(2,10,24,.25)');
     ctx.fillStyle = v; ctx.fillRect(0, 0, W, H); ctx.fillStyle = '#fff';
     ctx.font = '400 28px "Exo 2"'; ctx.letterSpacing = '9px'; ctx.globalAlpha = .85;
     ctx.fillText(`${it.s.kind} · ${String(it.pi + 1).padStart(2, '0')}`.toUpperCase(), W / 2, H * .3);
-    ctx.globalAlpha = 1; ctx.letterSpacing = '1px'; ctx.font = 'italic 400 104px "Cormorant Garamond"';
+    ctx.globalAlpha = 1; ctx.letterSpacing = '1px'; ctx.font = 'italic 400 104px "Noto Serif Display"';
     const lines = wrap(ctx, it.p.title, W * .84), lh = 100, y0 = H * .52 - (lines.length - 1) * lh / 2;
     lines.forEach((l, k) => ctx.fillText(l, W / 2, y0 + k * lh));
     ctx.font = '300 26px "Exo 2"'; ctx.letterSpacing = '6px'; ctx.globalAlpha = .75;
@@ -657,7 +662,7 @@ function frame() {
 
 /* ---------------- tải ---------------- */
 (async () => {
-  await Promise.race([Promise.all([document.fonts.load('italic 300 104px "Cormorant Garamond"'), document.fonts.load('300 30px "Exo 2"')]),
+  await Promise.race([Promise.all([document.fonts.load('italic 300 104px "Noto Serif Display"'), document.fonts.load('300 30px "Exo 2"')]),
                       new Promise(r => setTimeout(r, 2500))]);
   let done = 0;
   const n = $('#loader-n');

@@ -40,26 +40,55 @@ def render(page, clip=None, width=1800):
 
 
 def frames(page):
-    """Các khung ảnh trên trang (bỏ ảnh nền cả trang, icon công cụ, ảnh quá nhỏ), theo thứ tự đọc."""
+    """Các ảnh đặt trên trang (bỏ ảnh nền cả trang, icon công cụ, ảnh quá nhỏ), theo thứ tự đọc: [(khung, xref)]."""
     W, H = page.rect.width, page.rect.height
-    boxes = []
+    out, seen = [], set()
     for info in page.get_image_info(xrefs=True):
+        x = info['xref']
         r = pymupdf.Rect(info['bbox']) & page.rect
         a = r.width * r.height
-        if a > .55 * W * H or a < .012 * W * H:
+        if not x or x in seen or a > .55 * W * H or a < .012 * W * H:
             continue
-        if any((r & b).get_area() > .6 * min(a, b.get_area()) for b in boxes):
-            continue
-        boxes.append(r)
+        seen.add(x)
+        out.append((r, x))
     half = W / 2
-    boxes.sort(key=lambda r: (0 if (r.x0 + r.x1) / 2 < half else 1, round(r.y0 / 40), r.x0))
-    return boxes
+    out.sort(key=lambda t: (0 if (t[0].x0 + t[0].x1) / 2 < half else 1, round(t[0].y0 / 40), t[0].x0))
+    return out
+
+
+def raw_image(doc, xref):
+    """Ảnh gốc nhúng trong PDF (đúng độ phân giải gốc, không dính chữ / ảnh bên cạnh); giữ nền trong suốt nếu có."""
+    pix = pymupdf.Pixmap(doc, xref)
+    if pix.colorspace and pix.colorspace.n > 3:      # CMYK -> RGB
+        pix = pymupdf.Pixmap(pymupdf.csRGB, pix)
+    smask = doc.extract_image(xref).get('smask')
+    if smask:
+        try:
+            pix = pymupdf.Pixmap(pix, pymupdf.Pixmap(doc, smask))
+        except Exception:
+            pass
+    mode = 'RGBA' if pix.alpha else 'RGB'
+    im = Image.frombytes(mode, (pix.width, pix.height), pix.samples)
+    if mode == 'RGBA' and min(im.getchannel('A').getextrema()) > 250:
+        im = im.convert('RGB')
+    return im
+
+
+def useful(im):
+    """Bỏ ảnh gần như một màu (nền, khối màu, mảng chữ trên nền trơn)."""
+    import numpy as np
+    g = np.asarray(im.convert('L').resize((48, 48)), 'f')
+    return g.std() > 10 and min(im.size) >= 100
 
 
 def main(pdf):
     os.makedirs(IMG, exist_ok=True)
     doc = pymupdf.open(pdf)
     pg = lambda n: doc[n - 1]
+    # hình trang trí (sứa, tấm kính, nền nước) lặp lại trên nhiều trang -> không phải ảnh dự án
+    from collections import Counter
+    freq = Counter(x for p in doc for x in {i['xref'] for i in p.get_image_info(xrefs=True) if i['xref']})
+    deco = {x for x, c in freq.items() if c >= 3}
     data = {k: P[k] for k in ('name', 'alias', 'title', 'tagline', 'year', 'role', 'contact', 'experience', 'education', 'tools')}
     data['cover'] = save(render(pg(P['cover_page']), width=2000), 'cover')
     a = pg(P['about_page']); r = a.rect
@@ -86,10 +115,15 @@ def main(pdf):
         S['projects'] = []
         for pr in sec['projects']:
             sl = slug(pr['title'])
-            gal = []
+            gal, used = [], set()
             for n in pr['pages']:
-                for k, box in enumerate(frames(pg(n))):
-                    gal.append(save(render(pg(n), box, 1800), f'{sl}-{n}-{k}'))
+                for k, (box, xref) in enumerate(frames(pg(n))):
+                    if xref in used or xref in deco:
+                        continue
+                    used.add(xref)
+                    im = raw_image(doc, xref)
+                    if useful(im):
+                        gal.append(save(im, f'{sl}-{n}-{k}'))
             item = dict(pr, slug=sl, gallery=gal)
             item.pop('pages')
             S['projects'].append(item)
