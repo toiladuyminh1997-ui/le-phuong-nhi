@@ -89,6 +89,11 @@ def main(pdf):
     from collections import Counter
     freq = Counter(x for p in doc for x in {i['xref'] for i in p.get_image_info(xrefs=True) if i['xref']})
     deco = {x for x, c in freq.items() if c >= 3}
+    # hình có mặt ở trang không phải trang sản phẩm (bìa, bìa chương, trang thơ...) cũng là trang trí
+    proj_pages = {n for sec in P['sections'] for pr in sec['projects'] for n in pr['pages']}
+    for i, p in enumerate(doc):
+        if i + 1 not in proj_pages:
+            deco |= {inf['xref'] for inf in p.get_image_info(xrefs=True) if inf['xref']}
     data = {k: P[k] for k in ('name', 'alias', 'title', 'tagline', 'year', 'role', 'contact', 'experience', 'education', 'tools')}
     data['cover'] = save(render(pg(P['cover_page']), width=2000), 'cover')
     a = pg(P['about_page']); r = a.rect
@@ -118,14 +123,14 @@ def main(pdf):
             gal, used = [], set()
             for n in pr['pages']:
                 for k, (box, xref) in enumerate(frames(pg(n))):
-                    if xref in used or xref in deco:
+                    if xref in used or xref in deco or f'{n}-{k}' in pr.get('skip', ()):   # skip: hình trang trí chỉ riêng trang đó
                         continue
                     used.add(xref)
                     im = raw_image(doc, xref)
                     if useful(im):
                         gal.append(save(im, f'{sl}-{n}-{k}'))
             item = dict(pr, slug=sl, gallery=gal)
-            item.pop('pages')
+            item.pop('pages'); item.pop('skip', None)
             S['projects'].append(item)
             print(f'{sec["n"]:>4} {pr["title"]:32s} {len(gal):2d} ảnh')
         data['sections'].append(S)
