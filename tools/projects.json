@@ -1,0 +1,114 @@
+{
+  "name": "Lê Phương Nhi",
+  "alias": "Jin",
+  "title": "Immerse",
+  "tagline": "A visual odyssey beneath the waves",
+  "year": "'25",
+  "role": "2D Designer · Graphic & Key Visual · 3D & Animation",
+  "contact": {
+    "email": "nhilephuong1603@gmail.com",
+    "behance": "https://www.behance.net/nhilephuong163"
+  },
+  "cover_page": 1,
+  "about_page": 4,
+  "thanks_page": 73,
+  "story": [
+    {"page": 2,  "quote": "Sometimes to find yourself, you must first let yourself dissolve."},
+    {"page": 5,  "quote": "If you still know how to look up, the sea will teach you to see yourself again."},
+    {"page": 11, "quote": "Beauty begins where judgment ends."},
+    {"page": 22, "quote": "Art isn't for the eyes — it's for the quiet between souls."},
+    {"page": 27, "quote": "Beauty lives not in perfection, but in the courage to touch the unknown."},
+    {"page": 31, "quote": "Freedom is the moment when the soul transcends fear."},
+    {"page": 53, "quote": "Pain is the seed of beauty, if one is kind enough to let it grow."},
+    {"page": 61, "quote": "Perhaps self-love isn't about being strong, but about being gentle with what's still healing."}
+  ],
+  "experience": [
+    ["2D Designer — LeBros", "Jun 2022 – Aug 2022", "Unicef, BIM Group, VSMCamp, Apollo, Hải Đăng Xanh, Hawonkoo"],
+    ["Freelance Graphic Designer", "Aug 2023 – Now", "ZincFlo, DiepLam, Mỳ Long, Sushi Ichi, Là Chang"],
+    ["2D Designer — HCC Productions", "Aug 2023 – Aug 2025", "SHB, Taseco, AgriS, Betrimex, VyFast, NhanDan, VTV, VinGroup"],
+    ["Film crew — “Don't Cry Butterfly”", "Aug 2023 – Oct 2023", "Ekip Motion Pictures"]
+  ],
+  "education": [
+    ["Arena Multimedia School Hanoi", "2021 – 2024", "Best Student of Semester · Outstanding Student Awards (Digital Filmmaking, 3D Animation)"],
+    ["Universität Regensburg", "2020 – 2021", "Media Studies & Comparative European Ethnology"],
+    ["Europäisches Gymnasium Waldenburg", "2016 – 2020", ""],
+    ["Wellspring International Bilingual School", "2014 – 2016", "Vice President of the Student Council"]
+  ],
+  "tools": ["Illustrator", "Photoshop", "InDesign", "Premiere", "After Effects", "Substance Painter", "ZBrush", "3ds Max", "Maya"],
+  "sections": [
+    {"id": "seahorse", "n": "I", "name": "The Glittering Seahorse", "kind": "Branding", "page": 7, "color": "#7fd3ff", "projects": [
+      {"title": "Chí Công", "sub": "Ceramic Studio", "time": "2 weeks", "tools": ["Ai","Ps","Id"], "pages": [8],
+       "desc": "A ceramic studio where people craft their own pottery — friendly, modern and vibrant, keeping the soul of Vietnamese ceramics with a fresh contemporary touch."},
+      {"title": "Nodu", "sub": "Cooking & Delivery App", "time": "2 weeks", "tools": ["Ai","Ps","Id"], "pages": [9],
+       "desc": "A recipe-sharing platform from chefs and home cooks with built-in ingredient shopping, designed to be easy for every age."},
+      {"title": "ZincFlo", "sub": "Flower Shop", "time": "2 days", "tools": ["Ai","Ps","Id"], "pages": [10],
+       "desc": "Branding inspired by velvet wire flowers — a minimal black-and-white identity of luxury, mystery and patient craftsmanship."},
+      {"title": "Thora Lil", "sub": "Baby Clothing Shop", "time": "4 days", "tools": ["Ai","Ps","Id"], "pages": [12],
+       "desc": "A premium baby clothing brand: a little bunny symbol and soft pink and light-brown palette evoking tenderness and comfort."},
+      {"title": "DiepLam", "sub": "Nanoplasma & Beautyroom", "time": "2 days", "tools": ["Ai","Ps","Id"], "pages": [13],
+       "desc": "A skincare clinic identity balancing science and purity — olive green and creamy white, with an eye-and-petal symbol."},
+      {"title": "Voila", "sub": "Beauty Cosmetic & Personal Care", "time": "4 days", "tools": ["Ai","Ps","Id"], "pages": [14],
+       "desc": "“Pure beauty through simplicity” — a soft olive-to-cream gradient system across packaging, pouches and gift boxes."},
+      {"title": "Cicy Brows", "sub": "Brows Beauty", "time": "2 weeks", "tools": ["Ai","Ps","Id"], "pages": [16, 17],
+       "desc": ""}
+    ]},
+    {"id": "ray", "n": "II", "name": "The Ray of Silence", "kind": "Menu", "page": 18, "color": "#5fb4ff", "projects": [
+      {"title": "Sushi Ichi", "sub": "Sushi Restaurant", "time": "2 weeks", "tools": ["Ai","Ps"], "pages": [19],
+       "desc": "A premium sushi menu: deep black with subtle gold, a calm “less is more” layout that turns each page into a sensory experience."},
+      {"title": "Mỳ Long", "sub": "Chinese Restaurant", "time": "1 week", "tools": ["Ai","Ps"], "pages": [20],
+       "desc": "A dragon-motif menu in red, gold and black — layered textures and illustrations telling every dish as a story."},
+      {"title": "Grand Gourmet", "sub": "Japanese Restaurant", "time": "1 week", "tools": ["Ai","Ps"], "pages": [21],
+       "desc": "Japanese fine dining menus with minimalist layouts and gold-etched, hand-drawn illustrations."}
+    ]},
+    {"id": "octopus", "n": "III", "name": "The Blind Octopus", "kind": "Film & TVC", "page": 23, "color": "#8aa8ff", "projects": [
+      {"title": "Don't Cry Butterfly", "sub": "Feature Film · Casting Assistant", "time": "3 months", "tools": [], "pages": [24],
+       "desc": "Casting assistant on Dương Diệu Linh's feature film (Mưa Trên Cánh Bướm), supporting casting and coordinating actors during production."},
+      {"title": "Ánh Mắt", "sub": "Short Film · Director & Producer", "time": "2 months", "tools": ["Ai","Ps","Id","Pr","Ae"], "pages": [25],
+       "desc": "A student short film about love, conflict and distance in modern relationships — directed and produced."},
+      {"title": "Ace Hill", "sub": "TVC · Video Editing", "time": "1 day", "tools": ["Pr","Ae"], "pages": [26],
+       "desc": "A punchy lemon–cayenne radler commercial: splash shots and tight music sync."}
+    ]},
+    {"id": "flyingfish", "n": "IV", "name": "The Leap of Light", "kind": "3D & Animation", "page": 28, "color": "#9fe9ff", "projects": [
+      {"title": "Mesa Prime", "sub": "3D Game Model · Filmbook · Editing", "time": "2 months", "tools": ["Ai","Ps","Id","Pt","Pr","ZBrush","3ds Max"], "pages": [29, 30],
+       "desc": "A futuristic gunslinger reimagined as a 3D game character — modeled, textured, rendered, and presented in a filmbook and cinematic edit."},
+      {"title": "Lost & Found", "sub": "3D Animated Short", "time": "2 months", "tools": ["Ai","Ps","Id","Pt","Pr","Ae","ZBrush","Maya"], "pages": [32, 33],
+       "desc": "A boy who lost a leg and the three-legged dog that helps him heal. Character concepts, storyboard, logo, poster and filmbook."}
+    ]},
+    {"id": "lionfish", "n": "V", "name": "The Blooming Wounds", "kind": "Key Visual & POSM", "page": 47, "color": "#ffb38a", "projects": [
+      {"title": "AgriS Agro Day 2025", "sub": "Hi-Tech Agriculture Summit", "time": "", "tools": ["Ai","Ps"], "pages": [42],
+       "desc": "Stage and event visuals for an agriculture summit about technology and sustainability."},
+      {"title": "Ngày Hội Văn Hóa", "sub": "SHB × T&T Group Cultural Festival", "time": "2 months", "tools": ["Ai","Ps","Id"], "pages": [43, 44],
+       "desc": "“Stepping into a New Era” — key visual, stage and POSM system built on the torch of progress."},
+      {"title": "Quảng Ninh Program", "sub": "Drug Prevention Program 2025", "time": "3 weeks", "tools": ["Ai","Ps","Id"], "pages": [45, 46],
+       "desc": "A community campaign in Hạ Long: stage, exhibition, marathon and outdoor art in blue and orange."},
+      {"title": "Bước Chân Di Sản 2", "sub": "Runway Fashion Show", "time": "1 month", "tools": ["Ai","Ps","Id"], "pages": [48, 49],
+       "desc": "Heritage meets contemporary fashion — a deep-purple key visual carried from posters to cups and badges."},
+      {"title": "Giải Diên Hồng", "sub": "National Press Award", "time": "5 days", "tools": ["Ai","Ps"], "pages": [50, 51],
+       "desc": "Red and gold ceremony visuals for a national journalism award."},
+      {"title": "Một Thập Kỷ Dệt Nắng Thêu Hoa", "sub": "HCC 10 Years Ceremony", "time": "1 week", "tools": ["Ai","Ps"], "pages": [52],
+       "desc": "A warm, floral tenth-anniversary celebration — “weaving sunshine, embroidering blossoms”."},
+      {"title": "Bố Ơi Mình Đi Đâu Thế?", "sub": "Family Reality Show", "time": "1 week", "tools": ["Ai","Ps"], "pages": [54],
+       "desc": "Key visual and POSM for the press launch of a new season of the family reality show."},
+      {"title": "Rise Together, Shine Globally", "sub": "Betrimex Year End Party 2024", "time": "1 week", "tools": ["Ai","Ps"], "pages": [55, 56],
+       "desc": "A glowing orb lifted by many hands — green and gold for sustainable growth."},
+      {"title": "Vượt Sóng Vươn Tầm", "sub": "Thiên Á Group 20 Years", "time": "2 weeks", "tools": ["Ai","Ps","Id"], "pages": [57],
+       "desc": "Flowing waves of light in deep blue, violet and silver for a 20th anniversary."},
+      {"title": "Taseco's Got Talent 2025", "sub": "Taseco 20 Years", "time": "2 weeks", "tools": ["Ai","Ps","Id"], "pages": [58, 59, 60],
+       "desc": "A “city of the future” stage in Taseco blue and gold — merch, badges and keepsakes."},
+      {"title": "ETC Ascending Horizons", "sub": "ETC Year End Party 2025", "time": "2 months", "tools": ["Ai","Ps"], "pages": [62, 63],
+       "desc": "“Rise with our Light” — a bold red-orange stage, photobooths and fortune boxes."},
+      {"title": "Chạm Tới Địa Đàng", "sub": "Utopia Villas & Resort Opening", "time": "2 months", "tools": ["Ai","Ps"], "pages": [64, 65],
+       "desc": "An aurora-inspired “paradise retreat” launch blending nature, architecture and light."},
+      {"title": "Kiến Tạo & Vươn Xa", "sub": "Rox Up 2026", "time": "2 months", "tools": ["Ai","Ps"], "pages": [66],
+       "desc": "A vibrant red, light-driven event space about innovation and growth."},
+      {"title": "Shaping The Future", "sub": "SHB Conference 2026", "time": "1 month", "tools": ["Ai","Ps"], "pages": [67, 68],
+       "desc": "Large-scale LED stage and motion graphics in SHB orange and blue."},
+      {"title": "Rise Together", "sub": "Hoàng Huy Group YEP", "time": "1 month", "tools": ["Ai","Ps"], "pages": [69, 70],
+       "desc": "Red-and-gold year-end party: metallic curves, sequin photobooth and a grand stage."},
+      {"title": "Văn Cao — Duyên Hội Ninh Bình", "sub": "Commemoration Program", "time": "2 weeks", "tools": ["Ai","Ps"], "pages": [71],
+       "desc": "An open-air tribute for the 80th anniversary of the national anthem and composer Văn Cao."},
+      {"title": "Kuka Home", "sub": "Flagship Store Grand Opening", "time": "1 month", "tools": ["Ai","Ps"], "pages": [72],
+       "desc": "Grand-opening visuals for Kuka Home's flagship furniture showroom."}
+    ]}
+  ]
+}
