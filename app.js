@@ -21,7 +21,7 @@ const secStart = D.sections.map((_, si) => ITEMS.findIndex(it => it.si === si));
 
 /* ---------- bố cục ---------- */
 const R = mobile ? 3.0 : 4.6, A_STEP = .62, Y_STEP = 1.55;
-const CARD_W = mobile ? 2.5 : 3.9, CARD_H = CARD_W / 1.6;
+const CARD_W = mobile ? 1.9 : 3.9, CARD_H = CARD_W / 1.6;
 const HOME_Y = -6;
 
 const canvas = $('#gl');
@@ -371,7 +371,8 @@ async function cardTexture(it) {
   const src = it.type === 'section' ? it.s.cover && it.s.cover.full : best && best.full;
   if (src) {
     try {
-      const im = await loadImg(src), s = Math.max(W / im.width, H / im.height);
+      // bìa phần là trang đôi (2:1) có tên phần ở mép: vừa khít chiều ngang để không cắt mất chữ
+      const im = await loadImg(src), s = it.type === 'section' ? W / im.width : Math.max(W / im.width, H / im.height);
       ctx.drawImage(im, (W - im.width * s) / 2, (H - im.height * s) / 2, im.width * s, im.height * s);
     } catch (e) { /* để nền chuyển màu */ }
   }
