@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lê Phương Nhi — Portfolio · Immerse</title>
+<meta name="description" content="Lê Phương Nhi (Jin) — graphic designer, key visual & POSM, branding, film and 3D animation. Immerse: a visual odyssey beneath the waves.">
+<meta name="theme-color" content="#03101f">
+<meta property="og:title" content="Lê Phương Nhi — Immerse">
+<meta property="og:description" content="A visual odyssey beneath the waves — portfolio of Lê Phương Nhi.">
+<meta property="og:image" content="img/cover-full.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%2303101f'/%3E%3Cpath d='M16 5l2.4 8.6L27 16l-8.6 2.4L16 27l-2.4-8.6L5 16l8.6-2.4z' fill='%23bfe6ff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,300;0,400;1,300;1,400&family=Exo+2:wght@200;300;400;500;600&display=swap&subset=vietnamese">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading mode-home">
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="loader" id="loader"><span class="loader-n" id="loader-n">000</span><span class="loader-t">Diving in</span></div>
+
+<a class="brand" href="#/" aria-label="Home"><span class="brand-star">✦</span><span class="brand-t">Lê Phương Nhi<em>Portfolio <span id="yr"></span></em></span></a>
+<nav class="pill" aria-label="Navigation">
+  <a href="#/work" data-nav="work">Work</a>
+  <span class="pill-line" aria-hidden="true"><i></i></span>
+  <a href="#/about" data-nav="about">About</a>
+</nav>
+<div class="pager" id="pager" hidden>
+  <button class="pager-b" id="prev" aria-label="Previous project">&lt;&lt;</button>
+  <span class="pager-t" id="pager-t">—</span>
+  <button class="pager-b" id="next" aria-label="Next project">&gt;&gt;</button>
+</div>
+
+<section class="home" id="home">
+  <p class="home-k" id="home-k"></p>
+  <h1 class="home-t" id="home-t"></h1>
+  <p class="home-s" id="home-s"></p>
+  <button class="home-go" data-go="work"><span>Dive in</span><i aria-hidden="true">↓</i></button>
+</section>
+
+<aside class="index" id="index" hidden>
+  <p class="index-h">Chapters of the sea</p>
+  <ol id="index-list"></ol>
+  <p class="index-hint">Scroll · drag · ← → · click the glass to open</p>
+</aside>
+
+<div class="cap" id="cap" hidden><span class="cap-k" id="cap-k"></span><span class="cap-t" id="cap-t"></span></div>
+<p class="quote" id="quote" aria-live="polite"></p>
+
+<article class="panel section" id="section" hidden>
+  <div class="section-in">
+    <figure class="section-cover" id="s-cover"></figure>
+    <header class="section-h">
+      <p class="detail-k" id="s-k"></p>
+      <h2 class="section-t" id="s-t"></h2>
+      <p class="section-q" id="s-q"></p>
+    </header>
+    <div class="section-g" id="s-g"></div>
+  </div>
+  <button class="x" data-close aria-label="Back">Back ✕</button>
+</article>
+
+<article class="panel detail" id="detail" hidden>
+  <div class="detail-in">
+    <header class="detail-h">
+      <p class="detail-k" id="d-k"></p>
+      <h2 class="detail-t" id="d-t"></h2>
+      <p class="detail-s" id="d-s"></p>
+      <p class="detail-p" id="d-p"></p>
+      <dl class="detail-meta" id="d-meta"></dl>
+      <div class="detail-act" id="d-act"></div>
+    </header>
+    <div class="detail-g" id="d-g"></div>
+  </div>
+  <button class="x" data-close aria-label="Close">Close ✕</button>
+</article>
+
+<article class="panel about" id="about" hidden>
+  <div class="about-in">
+    <figure class="about-img" id="a-img"></figure>
+    <div class="about-txt">
+      <p class="detail-k" id="a-k"></p>
+      <h2 class="about-t" id="a-t"></h2>
+      <p class="about-r" id="a-r"></p>
+      <div class="about-cols">
+        <section><h3>Experience</h3><ul id="a-exp"></ul></section>
+        <section><h3>Education</h3><ul id="a-edu"></ul></section>
+      </div>
+      <h3>Tools</h3><p class="about-tools" id="a-tools"></p>
+      <h3>Contact</h3><ul class="about-c" id="a-c"></ul>
+    </div>
+  </div>
+  <button class="x" data-close aria-label="Close">Close ✕</button>
+</article>
+
+<div class="lb" id="lb" hidden><img alt=""><button class="x" aria-label="Close">Close ✕</button></div>
+<noscript><p class="nojs">This portfolio needs JavaScript and WebGL.</p></noscript>
+
+<script src="data.js"></script>
+<script type="importmap">{"imports": {"three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/"}}</script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

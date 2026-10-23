@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Các phiên bản — Lê Phương Nhi Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,300;1,300&family=Exo+2:wght@300;400;500&display=swap&subset=vietnamese">
+<style>
+  :root { --bg: #03101f; --fg: #e3f1ff; --muted: rgba(214, 233, 255, .6); --line: rgba(170, 215, 255, .2); --accent: #9fd8ff; }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body { margin: 0; min-height: 100vh; background: radial-gradient(120% 900px at 50% 0%, #0b2b52, var(--bg) 70%) no-repeat; color: var(--fg); font: 300 15px/1.6 "Exo 2", system-ui, sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 9vh 16px 12vh; }
+  .top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 6vh; }
+  h1 { margin: 0; font: italic 300 clamp(2.6rem, 6vw, 4.4rem)/1 "Noto Serif Display", serif; }
+  .top a { color: var(--accent); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; font-size: .78rem; }
+  ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+  li { display: grid; grid-template-columns: minmax(240px, 1fr) 2fr; gap: 28px; padding: 26px; border: 1px solid var(--line); border-radius: 18px 18px 48px 18px; background: rgba(8, 26, 48, .45); }
+  li.now { border-color: rgba(159, 216, 255, .5); box-shadow: 0 20px 60px -30px rgba(120, 190, 255, .5); }
+  .v { font: italic 300 2.4rem/1 "Noto Serif Display", serif; color: var(--accent); }
+  h2 { margin: 10px 0 8px; font-weight: 400; font-size: 1.15rem; }
+  h2 em { font-style: normal; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); border: 1px solid currentColor; border-radius: 999px; padding: 2px 8px; vertical-align: middle; }
+  p { margin: 0 0 18px; color: var(--muted); }
+  .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; color: var(--fg); text-decoration: none; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .thumbs a { position: relative; display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .thumbs img { display: block; width: 100%; height: auto; transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+  .thumbs a:hover img { transform: scale(1.04); }
+  .thumbs span { position: absolute; left: 10px; bottom: 8px; font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; background: rgba(3, 16, 31, .7); padding: 3px 8px; border-radius: 999px; }
+  @media (max-width: 760px) { li { grid-template-columns: 1fr; padding: 18px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><h1>Các phiên bản</h1><a href="./">← Về trang portfolio</a></div>
+  <ol>
+<li class="now">
+  <div class="meta"><span class="v">v7</span><h2>About theo trang trong quyển <em>hiện tại</em></h2><p>Trang About dựng như trang giới thiệu trong quyển; ảnh, tên, hai ô kính hiện ra lần lượt.</p>
+    <a class="btn" href="./">Mở bản này →</a></div>
+  <div class="thumbs">
+    <a href="./"><img src="versions/thumbs/v7-home.webp" alt="v7 — trang đầu" loading="lazy" width="720" height="450"><span>Trang đầu</span></a>
+    <a href="./#/work"><img src="versions/thumbs/v7-work.webp" alt="v7 — dự án" loading="lazy" width="720" height="450"><span>Dự án</span></a>
+  </div>
+</li>
+<li class="">
+  <div class="meta"><span class="v">v6</span><h2>Người hoá sứa nét hơn</h2><p>Trở lại người hoá sứa, tăng độ phân giải x2 bằng AI; sứa và voan cuốn lượn quanh người.</p>
+    <a class="btn" href="versions/v6/">Mở bản này →</a></div>
+  <div class="thumbs">
+    <a href="versions/v6/"><img src="versions/thumbs/v6-home.webp" alt="v6 — trang đầu" loading="lazy" width="720" height="450"><span>Trang đầu</span></a>
+    <a href="versions/v6/#/work"><img src="versions/thumbs/v6-work.webp" alt="v6 — dự án" loading="lazy" width="720" height="450"><span>Dự án</span></a>
+  </div>
+</li>
+<li class="">
+  <div class="meta"><span class="v">v5</span><h2>PDF cập nhật · cảnh trang Mục lục</h2><p>Bìa Chương V ôm cá sư tử, thêm 3 dự án Chương IV; nền trang đầu là cảnh người đi trên mặt nước.</p>
+    <a class="btn" href="versions/v5/">Mở bản này →</a></div>
+  <div class="thumbs">
+    <a href="versions/v5/"><img src="versions/thumbs/v5-home.webp" alt="v5 — trang đầu" loading="lazy" width="720" height="450"><span>Trang đầu</span></a>
+    <a href="versions/v5/#/work"><img src="versions/thumbs/v5-work.webp" alt="v5 — dự án" loading="lazy" width="720" height="450"><span>Dự án</span></a>
+  </div>
+</li>
+<li class="">
+  <div class="meta"><span class="v">v4</span><h2>Người hoá sứa + 5 chương</h2><p>Nhân vật chính là ảnh người hoá sứa dựng 2.5D; vòng quay chỉ còn 5 chương, bấm chương ra lưới sản phẩm.</p>
+    <a class="btn" href="versions/v4/">Mở bản này →</a></div>
+  <div class="thumbs">
+    <a href="versions/v4/"><img src="versions/thumbs/v4-home.webp" alt="v4 — trang đầu" loading="lazy" width="720" height="450"><span>Trang đầu</span></a>
+    <a href="versions/v4/#/work"><img src="versions/thumbs/v4-work.webp" alt="v4 — dự án" loading="lazy" width="720" height="450"><span>Dự án</span></a>
+  </div>
+</li>
+<li class="">
+  <div class="meta"><span class="v">v3</span><h2>Sửa bìa chương</h2><p>Bìa từng phần hiện đủ tên; tấm kính vừa màn hình điện thoại.</p>
+    <a class="btn" href="versions/v3/">Mở bản này →</a></div>
+  <div class="thumbs">
+    <a href="versions/v3/"><img src="versions/thumbs/v3-home.webp" alt="v3 — trang đầu" loading="lazy" width="720" height="450"><span>Trang đầu</span></a>
+    <a href="versions/v3/#/work"><img src="versions/thumbs/v3-work.webp" alt="v3 — dự án" loading="lazy" width="720" height="450"><span>Dự án</span></a>
+  </div>
+</li>
+<li class="">
+  <div class="meta"><span class="v">v2</span><h2>Thêm ảnh dự án</h2><p>Ảnh gốc của 32 dự án lấy từ PDF; đổi chữ có dấu sang Noto Serif Display.</p>
+    <a class="btn" href="versions/v2/">Mở bản này →</a></div>
+  <div class="thumbs">
+    <a href="versions/v2/"><img src="versions/thumbs/v2-home.webp" alt="v2 — trang đầu" loading="lazy" width="720" height="450"><span>Trang đầu</span></a>
+    <a href="versions/v2/#/work"><img src="versions/thumbs/v2-work.webp" alt="v2 — dự án" loading="lazy" width="720" height="450"><span>Dự án</span></a>
+  </div>
+</li>
+<li class="">
+  <div class="meta"><span class="v">v1</span><h2>Bản thử đầu tiên</h2><p>Cột xương sống thủy tinh và đàn sứa vẽ bằng code; 32 dự án là các tấm kính xoắn ốc, chưa có ảnh.</p>
+    <a class="btn" href="versions/v1/">Mở bản này →</a></div>
+  <div class="thumbs">
+    <a href="versions/v1/"><img src="versions/thumbs/v1-home.webp" alt="v1 — trang đầu" loading="lazy" width="720" height="450"><span>Trang đầu</span></a>
+    <a href="versions/v1/#/work"><img src="versions/thumbs/v1-work.webp" alt="v1 — dự án" loading="lazy" width="720" height="450"><span>Dự án</span></a>
+  </div>
+</li>
+  </ol>
+</main>
+</body>
+</html>
