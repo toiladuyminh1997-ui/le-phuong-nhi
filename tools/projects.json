@@ -47,48 +47,70 @@
     }
   ],
   "experience": [
-    [
-      "2D Designer — LeBros",
-      "Jun 2022 – Aug 2022",
-      "Unicef, BIM Group, VSMCamp, Apollo, Hải Đăng Xanh, Hawonkoo"
-    ],
-    [
-      "Freelance Graphic Designer",
-      "Aug 2023 – Now",
-      "ZincFlo, DiepLam, Mỳ Long, Sushi Ichi, Là Chang"
-    ],
-    [
-      "2D Designer — HCC Productions",
-      "Aug 2023 – Aug 2025",
-      "SHB, Taseco, AgriS, Betrimex, VyFast, NhanDan, VTV, VinGroup"
-    ],
-    [
-      "Film crew — “Don't Cry Butterfly”",
-      "Aug 2023 – Oct 2023",
-      "Ekip Motion Pictures"
-    ]
+    {
+      "t": "2D Designer at LeBros",
+      "d": "Jun 2022 – Aug 2022",
+      "items": [
+        "Participant in projects of Unicef, BIM Group, VSMCamp, Apollo, Hải Đăng Xanh, Hawonkoo…"
+      ]
+    },
+    {
+      "t": "Freelance Graphic Designer",
+      "d": "Aug 2023 – Now",
+      "items": [
+        "Clients: ZincFlo, DiepLam, Mỳ Long, Sushi Ichi, Là Chang…"
+      ]
+    },
+    {
+      "t": "2D Designer at HCC Productions",
+      "d": "Aug 2023 – Aug 2025",
+      "items": [
+        "Participant in projects of SHB, Taseco, AgriS, Betrimex, VyFast, NhanDan, VTV, VinGroup…"
+      ]
+    },
+    {
+      "t": "Ekip Motion Pictures — “Don't Cry Butterfly”",
+      "d": "Aug 2023 – Oct 2023",
+      "items": [
+        "Member of the film crew"
+      ]
+    }
   ],
   "education": [
-    [
-      "Arena Multimedia School Hanoi",
-      "2021 – 2024",
-      "Best Student of Semester · Outstanding Student Awards (Digital Filmmaking, 3D Animation)"
-    ],
-    [
-      "Universität Regensburg",
-      "2020 – 2021",
-      "Media Studies & Comparative European Ethnology"
-    ],
-    [
-      "Europäisches Gymnasium Waldenburg",
-      "2016 – 2020",
-      ""
-    ],
-    [
-      "Wellspring International Bilingual School",
-      "2014 – 2016",
-      "Vice President of the Student Council"
-    ]
+    {
+      "t": "Wellspring International Bilingual School",
+      "d": "Sep 2014 – May 2016",
+      "items": [
+        "Vice President of the Student Council 2015",
+        "Organizer of the Avant-Garde School Prom 2015",
+        "Organizer of the TedWIS talkshow series"
+      ]
+    },
+    {
+      "t": "Europäisches Gymnasium Waldenburg",
+      "d": "Sep 2016 – May 2020",
+      "items": [
+        "Member of the school music band as bass guitarist",
+        "Organizer of the Halloween Party 2019"
+      ]
+    },
+    {
+      "t": "Universität Regensburg — Deutschland",
+      "d": "Sep 2020 – May 2021",
+      "items": [
+        "Media Studies & Comparative European Ethnology"
+      ]
+    },
+    {
+      "t": "Arena Multimedia School Hanoi",
+      "d": "Apr 2021 – 2024",
+      "items": [
+        "Best Student of Semester Award — Arena Honoring Ceremony 2023",
+        "Outstanding Student Award, Semester 3 — Digital Filmmaking",
+        "Outstanding Student Award, Semester 4 — 3D Animation suite",
+        "Outstanding Student Award, Semester 5 — 3D Animation suite"
+      ]
+    }
   ],
   "tools": [
     "Illustrator",

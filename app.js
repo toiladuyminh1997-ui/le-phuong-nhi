@@ -459,19 +459,28 @@ document.addEventListener('click', e => {
   const a = e.target.closest('a[href^="#/"]');
   if (a && !a.matches('[data-nav], .brand')) { e.preventDefault(); route(a.getAttribute('href')); }
 });
+/* About: dựng theo trang 4 của quyển; khi mở thì thêm .play để từng phần hiện ra lần lượt (CSS lo thứ tự / độ trễ) */
 function fillAbout() {
-  $('#a-img').innerHTML = D.portrait ? `<img src="${D.portrait.full}" alt="${D.name}" width="${D.portrait.w}" height="${D.portrait.h}">` : '';
+  if (D.about_bg) $('#ab-bg').style.backgroundImage = `url("${D.about_bg}")`;
+  $('#a-img').innerHTML = `<img src="img/hero.webp" alt="${D.name}" decoding="async">`;   // ảnh người hoá sứa đã làm nét (tools/hero.py)
   $('#a-k').textContent = `Portfolio ${D.year} · ${D.alias}`;
-  $('#a-t').textContent = D.name;
+  $('#a-t').innerHTML = [...D.name].map((c, i) => c === ' ' ? ' ' : `<span class="ch" style="--i:${i}">${c}</span>`).join('');
   $('#a-r').textContent = D.role;
-  const li = r => `<li><b>${r[0]}</b><span>${r[1]}</span>${r[2] ? `<small>${r[2]}</small>` : ''}</li>`;
+  const li = (r, j) => `<li style="--j:${j}"><b>${r.t}</b><span>(${r.d})</span>`
+    + (r.items && r.items.length ? `<ul>${r.items.map(x => `<li>${x}</li>`).join('')}</ul>` : '') + '</li>';
   $('#a-exp').innerHTML = D.experience.map(li).join('');
   $('#a-edu').innerHTML = D.education.map(li).join('');
   $('#a-tools').textContent = D.tools.join(' · ');
-  $('#a-c').innerHTML = `<li><a href="mailto:${D.contact.email}">${D.contact.email}</a></li>`
-    + `<li><a href="${D.contact.behance}" target="_blank" rel="noopener">behance.net/${D.contact.behance.split('/').pop()}</a></li>`;
+  $('#a-c').innerHTML = `<li style="--j:0"><a href="${D.contact.behance}" target="_blank" rel="noopener"><span class="ic">Bē</span>behance.net/${D.contact.behance.split('/').pop()}</a></li>`
+    + `<li style="--j:1"><a href="mailto:${D.contact.email}"><span class="ic">✉</span>${D.contact.email}</a></li>`;
 }
 fillAbout();
+function playAbout() {
+  const a = $('#about');
+  a.classList.remove('play');
+  void a.offsetWidth;                                   // chạy lại hiệu ứng mỗi lần mở
+  requestAnimationFrame(() => a.classList.add('play'));
+}
 
 /* #/ · #/work · #/work/<chương> · #/work/<chương>/<sản phẩm> · #/about */
 function findProject(slug) {
@@ -487,7 +496,7 @@ function route(h) {
   const m = hash.match(/^#\/work(?:\/([\w-]+))?(?:\/([\w-]+))?/);
   $('#detail').hidden = $('#about').hidden = $('#section').hidden = true;
   opened = null;
-  if (hash.startsWith('#/about')) { mode = 'about'; modeTo = 1; $('#about').hidden = false; }
+  if (hash.startsWith('#/about')) { mode = 'about'; modeTo = 1; $('#about').hidden = false; $('#about').scrollTop = 0; playAbout(); }
   else if (m) {
     mode = 'work'; modeTo = 1;
     const si = D.sections.findIndex(s => s.id === m[1]);

@@ -77,19 +77,25 @@
   <button class="x" data-close aria-label="Close">Close ✕</button>
 </article>
 
+<!-- About: dựng theo trang 4 của quyển — nền nước nhoè, người hoá sứa bên trái, tên + 2 ô kính bên phải.
+     Mở ra theo thứ tự: nền -> ảnh -> tên -> ô Experience -> ô Education -> từng dòng chữ -> liên hệ (app.js thêm class .play) -->
 <article class="panel about" id="about" hidden>
-  <div class="about-in">
-    <figure class="about-img" id="a-img"></figure>
-    <div class="about-txt">
-      <p class="detail-k" id="a-k"></p>
-      <h2 class="about-t" id="a-t"></h2>
-      <p class="about-r" id="a-r"></p>
-      <div class="about-cols">
-        <section><h3>Experience</h3><ul id="a-exp"></ul></section>
-        <section><h3>Education</h3><ul id="a-edu"></ul></section>
+  <div class="ab-bg" id="ab-bg" aria-hidden="true"></div>
+  <div class="ab-in">
+    <figure class="ab-img" id="a-img"></figure>
+    <div class="ab-txt">
+      <p class="ab-k" id="a-k"></p>
+      <h2 class="ab-name" id="a-t"></h2>
+      <div class="ab-rule" aria-hidden="true"><span>✦</span><i></i></div>
+      <p class="ab-role" id="a-r"></p>
+      <div class="ab-boxes">
+        <section class="glass" style="--d:1.25s"><h3><span>Experience</span><i></i></h3><ul id="a-exp"></ul></section>
+        <section class="glass" style="--d:1.55s"><h3><span>Education</span><i></i></h3><ul id="a-edu"></ul></section>
       </div>
-      <h3>Tools</h3><p class="about-tools" id="a-tools"></p>
-      <h3>Contact</h3><ul class="about-c" id="a-c"></ul>
+      <div class="ab-foot">
+        <ul class="ab-contact" id="a-c"></ul>
+        <p class="ab-tools"><b>Tools</b><span id="a-tools"></span></p>
+      </div>
     </div>
   </div>
   <button class="x" data-close aria-label="Close">Close ✕</button>

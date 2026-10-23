@@ -98,6 +98,13 @@ def main(pdf):
     data['cover'] = save(render(pg(P['cover_page']), width=2000), 'cover')
     a = pg(P['about_page']); r = a.rect
     data['portrait'] = save(render(a, pymupdf.Rect(0, 0, r.width * .55, r.height), 1600), 'portrait')
+    # nền trang About: ảnh nền trang 4 làm nhoè (giống nền nước của trang trong quyển)
+    from PIL import ImageFilter
+    bgx = max(a.get_image_info(xrefs=True), key=lambda i: i['width'] * i['height'])['xref']
+    bg = raw_image(doc, bgx).convert('RGB')
+    bg = bg.resize((960, round(bg.height * 960 / bg.width)), Image.LANCZOS).filter(ImageFilter.GaussianBlur(14))
+    bg.save(os.path.join(IMG, 'about-bg.webp'), 'WEBP', quality=80)
+    data['about_bg'] = 'img/about-bg.webp'
     t = pg(P['thanks_page']); r = t.rect
     data['thanks'] = save(render(t, pymupdf.Rect(r.width * .5, 0, r.width, r.height), 1600), 'thanks')
     data['story'] = []
