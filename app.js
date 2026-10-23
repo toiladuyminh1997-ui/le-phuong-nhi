@@ -109,17 +109,19 @@ const COUNT = mobile ? 7000 : 26000, SPAN = N * Y_STEP + 30;
   world.add(dust);
 }
 
-/* ---------- nhân vật chính: trang 6 của quyển — người bước trên mặt nước, đàn sứa bơi quanh — dựng thành cảnh 2.5D ----------
+/* ---------- nhân vật chính: người hoá sứa (trang 4 của PDF = trang 6 sách in), dựng thành cảnh 2.5D ----------
    Lưới phẳng chia nhỏ, đẩy nổi theo bản đồ độ sâu (tools/hero.py) -> rê chuột thấy rõ lớp gần / xa.
-   Đàn sứa dập dềnh như đang co bóp bơi lên và trôi chậm theo dòng; mặt nước gợn lăn tăn, lấp lánh;
-   người đứng yên; gợn lan theo con trỏ; ảnh hiện ra như mực tan; mép ảnh tan vào nền biển. */
+   Chuông sứa co bóp, voan và xúc tu cuốn lượn quanh người như trong nước; gương mặt giữ yên;
+   gợn lan theo con trỏ; ảnh hiện ra như mực tan từ gương mặt; nền nước trong ảnh tan vào nền biển của trang.
+   (Bản đồ có kênh mặt nước A cho cảnh có mặt nước; ảnh này A = 0.) */
 const center = new THREE.Group();
 scene.add(center);
-const HERO_H = mobile ? 4.6 : 5.0;
+const HERO_H = mobile ? 4.3 : 4.6;
 const heroU = {
   uTex: { value: null }, uMap: { value: null }, uT: { value: 0 }, uA: { value: 0 }, uReveal: { value: 0 },
   uDepth: { value: .7 }, uMouse: { value: new THREE.Vector2(.5, .5) }, uRip: { value: 0 }, uVel: { value: 0 },
   uB: { value: colB }, uBg: { value: colA },
+  uFocus: { value: new THREE.Vector2(.476, .6) },   // gương mặt (toạ độ uv): tâm của lớp hiện ra
 };
 const heroMat = new THREE.ShaderMaterial({
   transparent: true, depthWrite: false, uniforms: heroU,
@@ -130,22 +132,24 @@ const heroMat = new THREE.ShaderMaterial({
       vec4 m = texture2D(uMap, uv); vM = m;
       vec3 p = position;
       p.z += (m.r - .35) * uDepth;                                       // chiều sâu thật từ ảnh
-      float jelly = m.b * (1. - m.a);
-      p.z += sin(uT * .8 + uv.x * 9. + uv.y * 5.) * .06 * jelly;         // lớp sứa phồng xẹp nhẹ
-      p.z += sin(uv.x * 40. - uT * 1.6) * sin(uv.y * 24. + uT) * .025 * m.a;   // sóng trên mặt nước
+      float water = 1. - m.a, jelly = m.b * (1. - water);   // A = 1 - mặt nước
+      p.z += sin(uT * .8 + uv.x * 9. + uv.y * 5.) * .06 * jelly;         // chuông sứa phồng xẹp nhẹ
+      p.x += sin(uT * .9 + uv.y * 7. + uv.x * 2.) * .04 * jelly;         // voan / xúc tu cuốn lượn
+      p.y += sin(uT * .7 + uv.x * 6.) * .03 * jelly;
+      p.z += sin(uv.x * 40. - uT * 1.6) * sin(uv.y * 24. + uT) * .025 * water;   // sóng trên mặt nước
       float d = distance(uv, uMouse);
       vRip = sin(d * 38. - uT * 5.) * exp(-d * 7.) * uRip;
       p.z += vRip * .06;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.);
     }`,
   fragmentShader: `precision highp float; uniform sampler2D uTex; uniform float uT, uA, uReveal, uVel; uniform vec3 uB, uBg; uniform vec2 uMouse;
-    varying vec2 vUv; varying vec4 vM; varying float vRip;
+    varying vec2 vUv; varying vec4 vM; varying float vRip; uniform vec2 uFocus;
     float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
     float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.-2.*f);
       return mix(mix(h(i), h(i+vec2(1,0)), f.x), mix(h(i+vec2(0,1)), h(i+vec2(1,1)), f.x), f.y); }
     float fbm(vec2 p){ float v = 0., a = .5; for (int i = 0; i < 4; i++){ v += a * n(p); p *= 2.03; a *= .5; } return v; }
     void main(){
-      float soft = vM.b, water = vM.a, jelly = soft * (1. - water);
+      float soft = vM.b, water = 1. - vM.a, fig = vM.g, jelly = soft * (1. - water);
       vec2 uv = vUv;
       // sứa: mỗi vùng một nhịp — co bóp (nhích lên nhanh, hạ xuống chậm) và trôi ngang chậm theo dòng
       float ph = n(vUv * vec2(4., 3.)) * 6.2831;
@@ -169,17 +173,19 @@ const heroMat = new THREE.ShaderMaterial({
       vec2 cell = floor(vUv * vec2(300., 120.)), cf = fract(vUv * vec2(300., 120.)) - .5;
       float glint = step(.985, h(cell)) * smoothstep(.45, .0, length(cf)) * pow(.5 + .5 * sin(uT * 3. + h(cell + 7.) * 40.), 6.);
       c += vec3(.8, .92, 1.) * glint * water * .9;
-      // mép ảnh tan vào nền biển của trang
-      float edge = smoothstep(0., .1, vUv.x) * smoothstep(1., .9, vUv.x) * smoothstep(0., .1, vUv.y) * smoothstep(1., .86, vUv.y);
-      // hiện ra: tan như mực trong nước, từ người lan ra
-      float r = fbm(vUv * 6.) * .5 + distance(vUv * vec2(2., 1.), vec2(.33, .28)) * .55;
-      float rv = smoothstep(r - .08, r, uReveal * 1.6);
+      // mép ảnh + nền nước trong ảnh tan vào nền biển của trang (giữ rõ người và con sứa)
+      float edge = smoothstep(0., .12, vUv.x) * smoothstep(1., .84, vUv.x) * smoothstep(0., .1, vUv.y) * smoothstep(1., .9, vUv.y);
+      float a = mix(.32 * edge * edge, 1., fig) * edge;   // nền nước trong ảnh mờ hẳn đi: không lộ khung ảnh
+      c = mix(uBg * 1.4 + c * .45, c, fig);
+      // hiện ra: tan như mực trong nước, từ gương mặt lan ra
+      float r = fbm(vUv * 6.) * .5 + distance(vUv, uFocus) * .9;
+      float rv = smoothstep(r - .08, r, uReveal * 1.3);
       c += uB * smoothstep(.0, .08, rv) * (1. - rv) * 2.;
-      gl_FragColor = vec4(c, edge * rv * uA);
+      gl_FragColor = vec4(c, a * rv * uA);
       #include <colorspace_fragment>
     }`,
 });
-const hero = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, mobile ? 160 : 280, mobile ? 80 : 140), heroMat);
+const hero = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, mobile ? 120 : 220, mobile ? 112 : 206), heroMat);
 hero.visible = false;
 hero.frustumCulled = false;
 center.add(hero);
@@ -189,7 +195,7 @@ const halo = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.ShaderMater
   vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }',
   fragmentShader: 'precision highp float; varying vec2 vUv; uniform vec3 uB; void main(){ float d = length((vUv - .5) * vec2(1.6, 1.)); gl_FragColor = vec4(uB * smoothstep(.5, .0, d) * .22, 1.); }',
 }));
-halo.scale.set(6, 6.5, 1); halo.position.z = -.4; halo.visible = false;   // cảnh trang 6 đã có ánh sáng riêng
+halo.scale.set(6, 6.5, 1); halo.position.z = -.4;
 center.add(halo);
 
 /* ---------- tấm kính dự án ---------- */
@@ -540,9 +546,9 @@ function frame() {
   bgMat.uniforms.uM.value.copy(mouseS);
 
   // nhân vật: giữa cảnh ở trang đầu; khi xem dự án lùi ra sau vòng kính, mờ đi
-  center.position.set(mobile ? 1.5 * (1 - mt) : 0, THREE.MathUtils.lerp(mobile ? .9 : .6, .3, mt) + Math.sin(t * .6) * .04, THREE.MathUtils.lerp(0, -1.6, mt));   // điện thoại: dời cảnh để người bước trên nước nằm trong khung
+  center.position.set(0, THREE.MathUtils.lerp(mobile ? 1.05 : .78, .3, mt) + Math.sin(t * .6) * .05, THREE.MathUtils.lerp(0, -1.6, mt));   // trang đầu: nằm trên chữ tiêu đề
   center.scale.setScalar(THREE.MathUtils.lerp(1, 1.15, mt));
-  center.rotation.y = mouseS.x * .1 + Math.sin(t * .2) * .03;      // xoay nhẹ theo chuột -> thấy rõ chiều sâu
+  center.rotation.y = mouseS.x * .2 + Math.sin(t * .2) * .04;      // xoay nhẹ theo chuột -> thấy rõ chiều sâu
   center.rotation.x = -mouseS.y * .12;
   heroU.uT.value = t;
   heroU.uA.value += (((opened || mode === 'about') ? .22 : 1 - mt * .5) - heroU.uA.value) * .05;
