@@ -108,15 +108,13 @@ def main(pdf):
         ims = [render(p, h, 1400) for h in halves]
         im = max(ims, key=lambda i: __import__('numpy').asarray(i.convert('L').resize((64, 64)), 'f').std())
         data['story'].append({'quote': s['quote'], 'img': save(im, f'story-{s["page"]}', ((1400, 'full'), (600, 'thumb')))})
-    # nhân vật giữa cảnh: người áo trắng bay trong nước (trang 3), cắt vùng nhân vật
-    p3 = pg(3); r = p3.rect
-    hero = render(p3, pymupdf.Rect(r.width * .6, r.height * .12, r.width * .92, r.height * .92), 1200)
-    hero.save(os.path.join(IMG, 'hero.webp'), 'WEBP', quality=90)
-    data['hero'] = 'img/hero.webp'
+    # ảnh nhân vật chính ở trang đầu: tools/hero.py (img/hero.webp + img/hero-map.webp)
     data['sections'] = []
     for sec in P['sections']:
         S = {k: sec[k] for k in ('id', 'n', 'name', 'kind', 'color')}
-        S['cover'] = save(render(pg(sec['page']), width=2200), f'sec-{sec["id"]}', ((2200, 'full'), (800, 'thumb')))
+        # bìa chương: chụp cả trang (kèm tên chương dạng chữ vector) đúng độ phân giải ảnh nền gốc, không phóng to
+        cw = max(i['width'] for i in pg(sec['page']).get_image_info(xrefs=True))
+        S['cover'] = save(render(pg(sec['page']), width=max(1400, cw)), f'sec-{sec["id"]}', ((2200, 'full'), (800, 'thumb')))
         S['projects'] = []
         for pr in sec['projects']:
             sl = slug(pr['title'])

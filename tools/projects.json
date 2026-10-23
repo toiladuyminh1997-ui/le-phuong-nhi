@@ -358,6 +358,38 @@
             33
           ],
           "desc": "A boy who lost a leg and the three-legged dog that helps him heal. Character concepts, storyboard, logo, poster and filmbook."
+        },
+        {
+          "title": "Project 111",
+          "sub": "UNICEF Children Protection Campaign · Mascot Design",
+          "time": "5 days",
+          "tools": [],
+          "pages": [
+            35,
+            36
+          ],
+          "desc": "A friendly, futuristic guardian mascot for a UNICEF child-protection campaign — teaching children to recognise danger, protect themselves and ask for help, across comics, media and everyday items."
+        },
+        {
+          "title": "Intel Product Portfolio",
+          "sub": "Vietnam Mega Factory · Event Visual",
+          "time": "5 days",
+          "tools": [],
+          "pages": [
+            37
+          ],
+          "desc": "An immersive technology showcase: a blue, digitally-lit space with 3D graphics, synchronised displays and a mascot to connect with the audience."
+        },
+        {
+          "title": "Mã Cốt",
+          "sub": "New Year Collection",
+          "time": "1 week",
+          "tools": [],
+          "pages": [
+            38,
+            39
+          ],
+          "desc": "A collection built on the Five Elements as five emotional states of a year — bones not as loss, but as the core that remains after we let go."
         }
       ]
     },
@@ -366,7 +398,7 @@
       "n": "V",
       "name": "The Blooming Wounds",
       "kind": "Key Visual & POSM",
-      "page": 47,
+      "page": 40,
       "color": "#ffb38a",
       "projects": [
         {
@@ -378,6 +410,7 @@
             "Ps"
           ],
           "pages": [
+            41,
             42
           ],
           "desc": "Stage and event visuals for an agriculture summit about technology and sustainability."
